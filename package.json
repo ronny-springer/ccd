@@ -1,0 +1,23 @@
+{
+  "name": "ccd",
+  "version": "1.0.0",
+  "description": "CSS Comment Documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronny-springer/ccd.git"
+  },
+  "keywords": [
+    "CSS",
+    "Living Documentation"
+  ],
+  "author": "springer.ronny@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ronny-springer/ccd/issues"
+  },
+  "homepage": "https://github.com/ronny-springer/ccd#readme"
+}
