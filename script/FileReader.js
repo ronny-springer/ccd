@@ -1,14 +1,18 @@
-var fs = require('fs'),
-    path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-function FileReader() {}
+function FileReader () {}
 
-FileReader.prototype.readFile = function ( file, callback ) {
-    var filePath = path.join(__dirname, file || ''),
-        fileEncoding = 'utf-8',
-        noop = function () {};
+FileReader.prototype.readFile = ( file, callback ) => {
+    const filePath = path.join(__dirname, file || '')
+    const fileEncoding = 'utf-8'
+    const noop = function () {}
 
-    fs.readFile(filePath, {encoding: fileEncoding}, callback || noop);
+    fs.readFile(filePath, {encoding: fileEncoding}, ( data, error ) => {
+        console.log('here', data, error);
+
+
+    });
 };
 
 exports = module.exports = new FileReader();
