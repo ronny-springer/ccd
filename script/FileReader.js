@@ -9,8 +9,6 @@ FileReader.prototype.readFile = ( file = '' ) => {
 
     return new Promise(( resolve, reject ) => {
         fs.readFile(filePath, fileEncoding, ( error, data ) => {
-
-            console.log(data)
             if (error) {
                 return reject(new Error (error))
             }
