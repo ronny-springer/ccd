@@ -1,12 +1,12 @@
-var program = require('commander')
-    fr = require('./script/FileReader');
+const program = require('commander')
+const fr = require('./script/FileReader')
 
 program
-    .version('1.0.0');
+    .version('1.0.0')
 
 program
     .option('-f, --file <file ...>', 'read css file')
-    .parse(process.argv);
+    .parse(process.argv)
 
 if (program.file) {
     console.log('file', program.file)
