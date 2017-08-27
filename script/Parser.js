@@ -3,11 +3,12 @@ const esprima = require('esprima')
 function Parser () {}
 
 Parser.prototype.grabComment = ( fileData ) => {
+    const options = { comment: true }
 
     return new Promise(( resolve, reject ) => {
         (typeof fileData === 'string' && fileData.length)
             ? resolve(esprima
-                .tokenize( fileData, { comment: true } )
+                .tokenize( fileData, options )
 
                 // filter line and block comments from file
                 .filter( data => {
