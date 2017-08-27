@@ -1,0 +1,18 @@
+/*
+ * ~ 1.2.3
+ * - definition
+ * > <div class="test">dfg</div>
+ */
+
+
+/*
+  ~ 5.2.3
+  - test
+  > <div class="test">dfg</div>
+ */
+
+// test
+
+.test {
+	background-color: cyan
+}
