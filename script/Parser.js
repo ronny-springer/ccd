@@ -11,27 +11,22 @@ Parser.prototype.grabComment = ( fileData ) => {
                 .tokenize( fileData, options )
 
                 // filter line and block comments from file
-                .filter( data => {
-                    return (data.type === 'LineComment' || data.type === 'BlockComment')
+                .filter( data => (
+                    (data.type === 'BlockComment')
                         ? data
                         : null
-                })
+                ))
 
                 // convert block comment strings into a list of each comment line
-                .map( data => {
-                    return (data.type === 'BlockComment')
-                        ? { 
-                            'type': data.type,
-                            'value': data.value
-                                // create a list of comment lines based on line breaks
-                                .split(/\n/)
-                                // remove whitespaces and leading Asterisks 
-                                .map(item => item.replace(/\s\*/g, '').trim())
-                                // remove empty items at the list
-                                .filter(item => item.length)
-                        }
-                        : data
-                }))
+                .map( data =>  ({ 
+                    'raw': data.value
+                            // create a list of comment lines based on line breaks
+                            .split(/\n/)
+                            // remove whitespaces and leading Asterisks 
+                            .map(item => item.replace(/\s\*/g, '').trim())
+                            // remove empty items at the list
+                            .filter(item => item.length)
+                })))
             : reject(new Error('Error while grabbing the comments from file.'))
     })
 }
