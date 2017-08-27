@@ -9,15 +9,11 @@ FileReader.prototype.readFile = ( file = '' ) => {
 
     return new Promise(( resolve, reject ) => {
         fs.readFile(filePath, fileEncoding, ( error, data ) => {
-            if (error) {
-                return reject(new Error (error))
-            }
-
-            if (!data) {
-                return reject(new Error ('no data'))
-            }
-
-            return resolve(data)
+        	return data
+        		? resolve(data)
+        		: (error) 
+        			? reject(new Error (error))
+        			: reject(new Error ('no data'))
         })
     })
 };
