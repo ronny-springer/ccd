@@ -31,7 +31,7 @@ Parser.prototype.grabComment = ( fileData ) => {
                         }
                         : data
                 }))
-            : reject(new Error('Error while normalizing the data.'))
+            : reject(new Error('Error while grabbing the comments from file.'))
     })
 }
 
