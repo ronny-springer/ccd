@@ -23,7 +23,7 @@ Parser.prototype.grabComment = ( fileData ) => {
                             // create a list of comment lines based on line breaks
                             .split(/\n/)
                             // remove whitespaces and leading Asterisks 
-                            .map(item => item.replace(/\s\*/g, '').trim())
+                            .map(item => item.replace(/[\s,\/\**]/g, '').trim()) 
                             // remove empty items at the list
                             .filter(item => item.length)
                 })))
