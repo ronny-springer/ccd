@@ -10,7 +10,7 @@ Parser.prototype.grabComment = ( fileData ) => {
             ? resolve(esprima
                 .tokenize( fileData, options )
 
-                // filter line and block comments from file
+                // filter block comments from file
                 .filter( data => (
                     (data.type === 'BlockComment')
                         ? data
