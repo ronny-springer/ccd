@@ -2,6 +2,12 @@ const esprima = require('esprima')
 
 function Parser () {}
 
+const isEmpty = ( obj = {} ) => {
+    return Object.keys(obj).length
+        ? false
+        : true
+}
+
 // convert block comment strings into a list of each comment line
 const normalizeBlockComments = ( data ) => {
     let comment = {}
@@ -61,7 +67,9 @@ Parser.prototype.normalizeComment = ( rawData ) => {
 
     return new Promise(( resolve, reject ) => {
         (rawData.length)
-            ? resolve(rawData.map( data => (normalizeBlockComments(data.value)) ))
+            ? resolve(rawData
+                .map( data => normalizeBlockComments(data.value) )
+                .filter( data => !isEmpty(data)))
             : reject(new Error('Error while normalizing the comments.'))
     })
 }
