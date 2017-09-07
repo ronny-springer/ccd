@@ -9,7 +9,7 @@ const normalizeBlockComments = ( data ) => {
         .split(/\n/)
 
         // remove whitespaces and leading Asterisks 
-        .map(item => item.replace(/[\/\**]/g, '').trim())
+        .map( item => item.replace(/[\/\**]/g, '').trim() )
 
         // convert the parsed comment lines into wanted semantics
         .map( item => {
@@ -70,7 +70,7 @@ Parser.prototype.sortComments = ( comments ) => {
     return new Promise(( resolve, reject ) => {
         (comments.length)
             ? resolve(comments
-                .sort( (prev, next) => prev.section > next.section ))
+                .sort(( prev, next ) => prev.section > next.section ))
             : reject(new Error('Error while sorting the comments. No comments.'))
     })
 }
