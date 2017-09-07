@@ -10,7 +10,9 @@ const isEmpty = ( obj = {} ) => {
 
 // convert block comment strings into a list of each comment line
 const normalizeBlockComments = ( data ) => {
-    let comment = {}
+    let comment = {
+        section: '', title: '', description: [], code: []
+    }
 
      data
 
@@ -24,22 +26,22 @@ const normalizeBlockComments = ( data ) => {
         .filter(item => item.length)
 
         // convert the parsed comment lines into wanted semantics
-        .map(item => {
+        .map( item => {
             const markerChar = item.charAt(0)
             const commentValue = item.substr(1, item.length)
 
             switch (markerChar) {
                 case '~':
-                    comment['section'] = commentValue
+                    comment.section = commentValue
                     break
                 case '#':
-                    comment['title'] = commentValue
+                    comment.title = commentValue
                     break
                 case '-':
-                    comment['description'] = commentValue
+                    comment.description.push(commentValue)
                     break
                 case '`':
-                    comment['code'] = commentValue
+                    comment.code.push(commentValue)
                     break
                 default:
                     null
