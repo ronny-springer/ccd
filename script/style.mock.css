@@ -13,7 +13,15 @@
   ` <div class="test">dfg</div>
  */
 
+/*
+	~ 2.0
+	# headline
+	- description
+ */
+
 /** normal comment */
+
+/* normal block comment */
 
 .test {
 	background-color: cyan
