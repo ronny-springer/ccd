@@ -1,13 +1,5 @@
 const esprima = require('esprima')
 
-function Parser () {}
-
-const isEmpty = ( obj = {} ) => {
-    return Object.keys(obj).length
-        ? false
-        : true
-}
-
 // convert block comment strings into a list of each comment line
 const normalizeBlockComments = ( data ) => {
     let comment = { section: '', title: '', description: [], code: [] }
@@ -17,15 +9,12 @@ const normalizeBlockComments = ( data ) => {
         .split(/\n/)
 
         // remove whitespaces and leading Asterisks 
-        .map(item => item.replace(/[\s,\/\**]/g, '').trim())
-
-        // remove empty items at the list
-        .filter(item => item.length)
+        .map(item => item.replace(/[\/\**]/g, '').trim())
 
         // convert the parsed comment lines into wanted semantics
         .map( item => {
             const markerChar = item.charAt(0)
-            const commentValue = item.substr(1, item.length)
+            const commentValue = item.substr(2, item.length)
 
             switch (markerChar) {
                 case '~':
@@ -48,6 +37,8 @@ const normalizeBlockComments = ( data ) => {
     return comment
 }
 
+function Parser () {}
+
 Parser.prototype.grabComments = ( fileData ) => {
     const options = { comment: true }
 
@@ -68,7 +59,9 @@ Parser.prototype.normalizeComments = ( rawData ) => {
         (rawData.length)
             ? resolve(rawData
                 .map( data => normalizeBlockComments(data.value) )
-                .filter( data => !isEmpty(data) ))
+
+                // skip empty data entries
+                .filter( data => (data.section.length) ? data : null ))
             : reject(new Error('Error while normalizing the comments. No raw data.'))
     })
 }
