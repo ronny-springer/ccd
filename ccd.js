@@ -15,6 +15,7 @@ if (program.file) {
     fr.readFile(program.file)
         .then(parser.grabComment)
         .then(parser.normalizeComment)
+        .then(parser.sortComments)
         .then(( data ) => {
         	console.log('return', data)
         })

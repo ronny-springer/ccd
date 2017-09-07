@@ -59,7 +59,7 @@ Parser.prototype.grabComment = ( fileData ) => {
 
                 // filter block comments from file
                 .filter( data => ((data.type === 'BlockComment') ? data : null )))
-            : reject(new Error('Error while grabbing the comments from file.'))
+            : reject(new Error('Error while grabbing the comments from file. No file data.'))
     })
 }
 
@@ -69,8 +69,17 @@ Parser.prototype.normalizeComment = ( rawData ) => {
         (rawData.length)
             ? resolve(rawData
                 .map( data => normalizeBlockComments(data.value) )
-                .filter( data => !isEmpty(data)))
-            : reject(new Error('Error while normalizing the comments.'))
+                .filter( data => !isEmpty(data) ))
+            : reject(new Error('Error while normalizing the comments. No raw data.'))
+    })
+}
+
+Parser.prototype.sortComments = ( comments ) => {
+    return new Promise(( resolve, reject ) => {
+        (comments.length)
+            ? resolve(comments
+                .sort( (prev, next) => prev.section > next.section ))
+            : reject(new Error('Error while sorting the comments. No comments.'))
     })
 }
 
