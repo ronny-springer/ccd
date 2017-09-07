@@ -49,7 +49,7 @@ const normalizeBlockComments = ( data ) => {
     return comment
 }
 
-Parser.prototype.grabComment = ( fileData ) => {
+Parser.prototype.grabComments = ( fileData ) => {
     const options = { comment: true }
 
     return new Promise(( resolve, reject ) => {
@@ -63,7 +63,7 @@ Parser.prototype.grabComment = ( fileData ) => {
     })
 }
 
-Parser.prototype.normalizeComment = ( rawData ) => {
+Parser.prototype.normalizeComments = ( rawData ) => {
 
     return new Promise(( resolve, reject ) => {
         (rawData.length)

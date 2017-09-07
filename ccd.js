@@ -13,8 +13,8 @@ if (program.file) {
     console.log('file', program.file)
 
     fr.readFile(program.file)
-        .then(parser.grabComment)
-        .then(parser.normalizeComment)
+        .then(parser.grabComments)
+        .then(parser.normalizeComments)
         .then(parser.sortComments)
         .then(( data ) => {
         	console.log('return', data)
