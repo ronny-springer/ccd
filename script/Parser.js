@@ -48,7 +48,7 @@ Parser.prototype.grabComments = ( fileData ) => {
                 .tokenize( fileData, options )
 
                 // filter block comments from file
-                .filter( data => ((data.type === 'BlockComment') ? data : null )))
+                .filter( data => (data.type === 'BlockComment') ? data : null ))
             : reject(new Error('Error while grabbing the comments from file. No file data.'))
     })
 }
