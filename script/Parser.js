@@ -10,12 +10,9 @@ const isEmpty = ( obj = {} ) => {
 
 // convert block comment strings into a list of each comment line
 const normalizeBlockComments = ( data ) => {
-    let comment = {
-        section: '', title: '', description: [], code: []
-    }
+    let comment = { section: '', title: '', description: [], code: [] }
 
-     data
-
+    data
         // create a list of comment lines based on line breaks
         .split(/\n/)
 
