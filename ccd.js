@@ -1,5 +1,5 @@
 const program = require('commander')
-const fr = require('./script/FileReader')
+const fileHandler = require('./script/FileHandler')
 const parser = require('./script/Parser')
 
 program
@@ -12,7 +12,7 @@ program
 if (program.file) {
     console.log('file', program.file)
 
-    fr.readFile(program.file)
+    fileHandler.readFile(program.file)
         .then(parser.grabComments)
         .then(parser.normalizeComments)
         .then(parser.sortComments)
