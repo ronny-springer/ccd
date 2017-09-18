@@ -26,7 +26,7 @@ const normalizeBlockComments = ( data ) => {
                 case '-':
                     comment.description.push(commentValue)
                     break
-                case '`':
+                case '>':
                     comment.code.push(commentValue)
                     break
                 default:
@@ -54,9 +54,8 @@ Parser.prototype.grabComments = ( fileData ) => {
 }
 
 Parser.prototype.normalizeComments = ( rawData ) => {
-
     return new Promise(( resolve, reject ) => {
-        (rawData.length)
+        (rawData && rawData.length)
             ? resolve(rawData
                 .map( data => normalizeBlockComments(data.value) )
 
@@ -68,7 +67,7 @@ Parser.prototype.normalizeComments = ( rawData ) => {
 
 Parser.prototype.sortComments = ( comments ) => {
     return new Promise(( resolve, reject ) => {
-        (comments.length)
+        (comments && comments.length)
             ? resolve(comments
                 .sort(( prev, next ) => prev.section > next.section ))
             : reject(new Error('Error while sorting the comments. No comments.'))
