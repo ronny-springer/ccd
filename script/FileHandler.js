@@ -1,21 +1,19 @@
 const fs = require('fs')
-const path = require('path')
 
 function FileHandler () {}
 
-FileHandler.prototype.readFile = ( file = '' ) => {
-    const filePath = path.join(__dirname, file)
+FileHandler.prototype.readFile = ( filePath ) => {
     const fileEncoding = {encoding: 'UTF-8'}
 
     return new Promise(( resolve, reject ) => {
-        fs.readFile(filePath, fileEncoding, ( error, data ) => {
-        	return data
-        		? resolve(data)
-        		: (error) 
-        			? reject(new Error (error))
-        			: reject(new Error ('no data'))
-        })
+        (filePath && filePath.length)
+            ? fs.readFile(filePath, fileEncoding, ( error, data ) => {
+                (data && data.length)
+                    ? resolve(data)
+                    : reject(new Error (error))
+            })
+            : reject(new Error ('Could not read the file. No data.'))
     })
-};
+}
 
-exports = module.exports = new FileHandler();
+exports = module.exports = new FileHandler()
